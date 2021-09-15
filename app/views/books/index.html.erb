@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <h1>Books</h1>
 
 <!--リスト-->
@@ -24,14 +25,22 @@
 </table>
 
 <!--新規作成部分-->
-<% if@bookc.errors.any? %>
- <%= @bookc.errors.count %> errors prohibited this book from being saved: %>
-  <% @bookc.errors.full_messages.each do |message| %>
-   <%= message %>
- <% end %>
-<% end %>
 
 <h2>NEW BOOK</h2>
+<!--バリデーション部分-->
+<% if flash[:errors].present? %>
+ <div id = "error_explanation">
+   <h2><%= flash[:errors].count %> errors prohibited this book from being saved: </h2>
+    <ul>
+     <% flash[:errors].each do |m| %>
+      <li><%= m %></li>
+     <% end %>
+    </ul>
+ </div>
+<% end %>
+
+
+
 <%= form_with model: @book,url:'/books', local:true do |f| %>
  <div class = "field">
   <label>Title</label>
@@ -45,5 +54,3 @@
   <%= f.submit 'Create Book' %>
  </div>
 <% end %>
-
-
