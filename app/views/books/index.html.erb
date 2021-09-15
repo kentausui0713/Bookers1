@@ -16,8 +16,8 @@
       <td><%= f.title %></td>
       <td><%= f.body %></td>
       <!--ここから下はほんとはlink_to使う-->
-      <td>show</td>
-      <td>Edit</td>
+      <td><%= link_to 'Show', "/books/#{f.id}" %></td>
+      <td><%= link_to 'Edit', "/books/#{f.id}/edit" %></td>
       <td>Destroy</td>
       <!--ここまで-->
   <% end %>
