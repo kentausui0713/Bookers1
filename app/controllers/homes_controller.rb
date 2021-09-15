@@ -1,4 +1,4 @@
 class HomesController < ApplicationController
-  def bookers
+  def top
   end
 end

@@ -15,17 +15,22 @@
     <tr>
       <td><%= f.title %></td>
       <td><%= f.body %></td>
-      <!--ここから下はほんとはlink_to使う-->
       <td><%= link_to 'Show', "/books/#{f.id}" %></td>
       <td><%= link_to 'Edit', "/books/#{f.id}/edit" %></td>
-      <td>Destroy</td>
-      <!--ここまで-->
+      <td><%= link_to 'Destroy', "/books/#{f.id}", method: :delete, "data-confirm" => "Are You Sure?" %></td>
   <% end %>
     </tr>
   </tbody>
 </table>
 
 <!--新規作成部分-->
+<% if@bookc.errors.any? %>
+ <%= @bookc.errors.count %> errors prohibited this book from being saved: %>
+  <% @bookc.errors.full_messages.each do |message| %>
+   <%= message %>
+ <% end %>
+<% end %>
+
 <h2>NEW BOOK</h2>
 <%= form_with model: @book,url:'/books', local:true do |f| %>
  <div class = "field">
